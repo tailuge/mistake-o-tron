@@ -4,6 +4,7 @@ const source = require('vinyl-source-stream');
 const tsify = require("tsify");
 const watchify = require("watchify");
 const gutil = require("gulp-util");
+const uglify = require("gulp-uglify");
 const buffer = require('vinyl-buffer');
 
 const destination = './dist';
@@ -28,6 +29,7 @@ function bundle() {
     .on('error', onError)
     .pipe(source('main.js'))
     .pipe(buffer())
+    .pipe(uglify())
     .pipe(gulp.dest(destination));
 }
 
@@ -40,5 +42,9 @@ gulp.task('dev', function() {
     .bundle()
     .on('error', onError)
     .pipe(source('main.js'))
+    .pipe(buffer())
+    .pipe(uglify())
     .pipe(gulp.dest(destination));
 });
+
+

@@ -12,7 +12,7 @@ export class Analysis {
   
   puzzles(player: string): Puzzle[] {
     const chess = new Chess()
-    var fens = []
+    var fens : any[] = []
     this.gameAnalysis.moves.split(' ').forEach(x => {
      fens.push(chess.fen())
      chess.move(x)

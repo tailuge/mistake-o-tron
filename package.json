@@ -16,6 +16,7 @@
     "gulp": "^3",
     "gulp-sourcemaps": "^2",
     "gulp-typescript": "^3",
+    "gulp-uglify": "^3.0.0",
     "gulp-util": "^3",
     "tsify": "^3",
     "typescript": "^2",
