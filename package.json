@@ -8,20 +8,20 @@
   "dependencies": {
     "chess.js": "^0.10",
     "chessground": "^7.3",
-    "page": "^1.7",
-    "snabbdom": "^0.6"
+    "page": "^1.8.6",
+    "snabbdom": "^0.7.1"
   },
   "devDependencies": {
-    "browserify": "^14",
+    "browserify": "^16.2.2",
     "gulp": "^3",
-    "gulp-sourcemaps": "^2",
-    "gulp-typescript": "^3",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-typescript": "^4.0.2",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3",
-    "tsify": "^3",
-    "typescript": "^2",
-    "vinyl-buffer": "^1",
-    "vinyl-source-stream": "^1",
-    "watchify": "^3"
+    "tsify": "^4.0.0",
+    "typescript": "^2.8.4",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0",
+    "watchify": "^3.11.0"
   }
 }
