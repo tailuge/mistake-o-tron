@@ -54,7 +54,17 @@ export class Puzzle {
       },
       drawable: { shapes: [
         { orig: this.movePlayed.from, dest: this.movePlayed.to, brush: 'red' }
+      ]},
+      events: {
+        select: (orig) => {
+          cg.set({
+            drawable: { shapes: [
+        { orig: this.movePlayed.from, dest: this.movePlayed.to, brush: 'red' },
+        { orig: orig, brush: 'blue' }
       ]}
+          })
+        }
+      }
     });
 
     return cg;
