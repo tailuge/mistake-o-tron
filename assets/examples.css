@@ -1,0 +1,27 @@
+/* Unrelated to chessground; only for the examples page */
+body {
+  background-image: linear-gradient(to bottom, #2c2c2c, #1a1a1a 116px);
+  color: #b0b0b0;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 11px;
+}
+#chessground-examples {
+  margin: 30px 0 0 0;
+  display: flex;
+  flex-flow: row;
+}
+
+
+#chessground-examples section {
+  display: inline-block;
+  background: #404040;
+  padding: 10px 12px 10px 12px;
+  border-radius: 2px;
+}
+#chessground-examples section p {
+  text-align: center;
+  margin: 20px 0 0 0;
+}
+#chessground-examples control {
+  margin-left: 20px;
+}
