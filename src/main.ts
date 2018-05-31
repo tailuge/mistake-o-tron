@@ -4,8 +4,9 @@ import klass from 'snabbdom/modules/class';
 import attributes from 'snabbdom/modules/attributes';
 import listeners from 'snabbdom/modules/eventlisteners';
 import * as page from 'page'
-import { Puzzle } from './units/puzzle'
-import { Analysis } from './units/analysis'
+import { Puzzle } from './puzzle'
+import { Analysis } from './analysis'
+export { LichessApi } from './lichessApi'
 
 export function run(element: Element) {
 
@@ -46,3 +47,4 @@ export function run(element: Element) {
   
  
 }
+

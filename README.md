@@ -9,9 +9,9 @@ Based on [lichess' chessground](https://github.com/ornicar/chessground-examples)
 
 ```
 nvm use v9.11.1
-yarn install
 npm install gulp-cli -g
-gulp 
+yarn install
+yarn watch 
 ```
 
 ### Example

@@ -5,9 +5,15 @@
   "main": "dist/main.js",
   "author": "tailuge",
   "license": "GPL-3.0",
+  "scripts": {
+    "test": "",
+    "test-with-coverage": "",
+    "watch": "gulp"
+  },
   "dependencies": {
     "chess.js": "^0.10",
     "chessground": "^7.3",
+    "oboe": "^2.1.4",
     "page": "^1.8.6",
     "snabbdom": "^0.7.1"
   },

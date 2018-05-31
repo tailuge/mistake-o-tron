@@ -1,29 +1,75 @@
 <html>
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" href="assets/chessground.css">
-  <link rel="stylesheet" href="assets/theme.css">
-  <link rel="stylesheet" href="assets/examples.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="assets/chessground.css">
+    <link rel="stylesheet" href="assets/theme.css">
+    <link rel="stylesheet" href="assets/examples.css">
 </head>
 
 <body>
-  <h2>test-o-tron</h2>
-  <div class="inputs">
-    <p><label>Game History</label><br/><br/>Game history is fetched at 10 games per second from <a href="https://lichess.org/api">lichess</a>. The more you ask for the longer it takes.</p>
+    <h2>test-o-tron</h2>
+    <div class="inputs">
+        <p><label>Game History</label></p><br/>Game history is fetched at 10 games per second from <a href="https://lichess.org/api">lichess</a>. The more you ask for the longer it takes.
+        <br/> Player:
+        <input type="text" id="player" name="player" value="tailuge" onkeydown="pressEnter(event)" />
+        <br/> Number of analysed games to fetch:
+        <input type="text" name="pages" id="pages" value="10" onkeydown="pressEnter(event)" />
+        <br/>
+        <input type="submit" id="Search" value="Fetch data" onclick="search()">
+    </div>
 
-    Player:<input type="text" id="player" name="player" value="tailuge" onkeydown="pressEnter(event)" />
-    Number of analysed games to fetch:
-    <input type="text" name="pages" id="pages" value="10" onkeydown="pressEnter(event)" />
-    <br/>
-    <br/>
-    <input type="submit" id="Search" value="Fetch data" onclick="search()">
-  </div>
-  <div id="chessground-examples"></div>
-  <script src="dist/main.js"></script>
-  <script>
-    ChessgroundExamples.run(document.getElementById('chessground-examples'));
-  </script>
+
+    <div class="inputs">
+        <p><label>Analysis Filter</label></p><br/> Severity
+        <select>
+     <option value="Inaccuracy">Inaccuracy</option>
+     <option value="Mistake" selected="selected">Mistake</option>
+     <option value="Blunder">Blunder</option>
+    </select> Game Phase
+        <select>
+     <option value="Opening" selected="selected">Opening</option>
+     <option value="Middlegame">Middlegame</option>
+     <option value="Endgame">Endgame</option>
+    </select> Colour
+        <select>
+     <option value="White">White</option>
+     <option value="Black">Black</option>
+     <option value="" selected="selected">Any</option>
+    </select> Time control:
+        <select id="timecontrol">
+  	 <option value="" selected="selected">Any</option>
+  	 <option value="classical">Classical</option>
+  	 <option value="rapid">Rapid</option>
+  	 <option value="blitz">Blitz</option>
+  	 <option value="bullet">Bullet</option>
+  	 <option value="ultraBullet">UltraBullet</option>
+  	 <option value="unlimited">Unlimited</option>
+  	 <option value="correspondence">Correspondence</option>
+		</select>
+
+    </div>
+
+    <div class="inputs">
+        <p><label>Status</label></p>
+        <pre id="log"></pre>
+    </div>
+
+    <div id="chessground-examples"></div>
+    <script src="dist/main.js"></script>
+    <script>
+        /* global bundle */
+        bundle.run(document.getElementById('chessground-examples'));
+
+        function status(x) {
+            document.getElementById("log").innerHTML = x;
+        }
+        var api = new bundle.LichessApi("https://lichess.org");
+        var total = 11;
+        api.games("tailuge", total,
+            x => { status("Fetching : " + x + " of " + total); },
+            x => { status("Done"); });
+    </script>
 </body>
 
 </html>

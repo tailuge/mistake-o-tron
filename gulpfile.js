@@ -15,7 +15,7 @@ function onError(error) {
 
 function build(debug) {
   return browserify('src/main.ts', {
-      standalone: 'ChessgroundExamples',
+      standalone: 'bundle',
       debug: debug
     })
     .plugin(tsify);

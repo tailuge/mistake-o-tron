@@ -1,7 +1,7 @@
 import { Chess } from 'chess.js';
 import { Chessground }  from 'chessground';
 import { Color }  from 'chessground/types';
-import { toDests, toColor } from '../util'
+import { toDests, toColor } from './util'
 import { VNode } from 'snabbdom/vnode';
 
 export class Puzzle {
