@@ -6,6 +6,7 @@ const watchify = require("watchify");
 const gutil = require("gulp-util");
 const uglify = require("gulp-uglify");
 const buffer = require('vinyl-buffer');
+const mocha = require('gulp-mocha');
 
 const destination = './dist';
 
@@ -47,4 +48,9 @@ gulp.task('dev', function() {
     .pipe(gulp.dest(destination));
 });
 
-
+gulp.task('run-tests', function() {
+  return gulp.src('test/*.spec.ts')
+    .pipe(mocha({
+      require: ['ts-node/register']
+    }));
+});

@@ -7,8 +7,6 @@ export class Analysis {
 
   constructor(gameAnalysis) {
     this.gameAnalysis = gameAnalysis;
-    console.log(gameAnalysis)
-//    this.gameAnalysis = this.example()[0];
   }
   
   puzzles(player: string): Puzzle[] {
@@ -27,13 +25,7 @@ export class Analysis {
     var playerColour: string = (this.gameAnalysis.players.white.user.id == player) ? 'w':'b'
     this.gameAnalysis.analysis = this.gameAnalysis.analysis.filter( x => x.judgment ).filter( x => x.move.color == playerColour)
 
-       
-    console.log(this.gameAnalysis.analysis)
-    
     return this.gameAnalysis.analysis.map(x => this.toPuzzle(x))
-    
-//    return [ new Puzzle('2r2rk1/4bp1p/pp2p1p1/4P3/4bP2/PqN1B2Q/1P3RPP/2R3K1 w - - 1 23',[],[]),
-//             new Puzzle('3r2k1/pp1P1pp1/2p1p2p/8/q1P2Q1P/8/P4PP1/3R2K1 b - - 0 26',[],[])]
   }
 
   toPuzzle(analysis) {

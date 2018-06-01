@@ -77,11 +77,11 @@
                 all.push(x);
                 status("Fetching : " + all.length + " of " + total);
                 puzzles = puzzles.concat((new bundle.Analysis(x)).puzzles(player));
-                console.log(puzzles);
                 boards.setPuzzles(puzzles);
             },
             x => {
                 status("Done");
+                console.log(JSON.stringify(all));
             });
     </script>
 </body>
