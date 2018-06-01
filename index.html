@@ -59,16 +59,30 @@
     <script src="dist/main.js"></script>
     <script>
         /* global bundle */
-        bundle.run(document.getElementById('chessground-examples'));
 
         function status(x) {
             document.getElementById("log").innerHTML = x;
         }
+
+        var boards = new bundle.Boards(document.getElementById('chessground-examples'));
+        boards.redraw();
+
         var api = new bundle.LichessApi("https://lichess.org");
-        var total = 11;
-        api.games("tailuge", total,
-            x => { status("Fetching : " + x + " of " + total); },
-            x => { status("Done"); });
+        var all = [];
+        var puzzles = [];
+        var total = 10;
+        var player = "tailuge";
+        api.games(player, total,
+            x => {
+                all.push(x);
+                status("Fetching : " + all.length + " of " + total);
+                puzzles = puzzles.concat((new bundle.Analysis(x)).puzzles(player));
+                console.log(puzzles);
+                boards.setPuzzles(puzzles);
+            },
+            x => {
+                status("Done");
+            });
     </script>
 </body>
 

@@ -7,7 +7,8 @@ export class Analysis {
 
   constructor(gameAnalysis) {
     this.gameAnalysis = gameAnalysis;
-    this.gameAnalysis = this.example()[0];
+    console.log(gameAnalysis)
+//    this.gameAnalysis = this.example()[0];
   }
   
   puzzles(player: string): Puzzle[] {

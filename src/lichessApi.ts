@@ -16,9 +16,8 @@ export class LichessApi {
 			headers: { Accept: "application/x-ndjson" },
 		}).node("!", function(data) {
 			all.push(data);
-			itemCallback(all.length);
-		}).on("end", function(data) {
-		  console.log(data)
+			itemCallback(data);
+		}).on("end", function({}) {
 			completeCallback(all);
 		}).fail(function(errorReport) {
 			console.error(JSON.stringify(errorReport));
