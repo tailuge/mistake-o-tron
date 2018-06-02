@@ -6,24 +6,20 @@ import { VNode } from 'snabbdom/vnode';
 
 export class Puzzle {
 
-  private initialFen: string;
-  private movePlayed;
-  private bestMove;
+  private analysis
 
-  constructor(initialFen: string, movePlayed, bestMove) {
-    this.initialFen = initialFen;
-    this.movePlayed = movePlayed;
-    this.bestMove = bestMove;
+  constructor(analysis) {
+    this.analysis = analysis
   }
-  
+
   run(el) {
-    const chess = new Chess(this.initialFen)
+    const chess = new Chess(this.analysis.fen)
 
     let color:Color = toColor(chess)
     let config = {
       orientation: color,
       turnColor: color,
-      fen: this.initialFen,
+      fen: this.analysis.fen,
       movable: {
         color: color,
         free: false,
@@ -34,6 +30,9 @@ export class Puzzle {
     const cg = Chessground(el, config);
 
     cg.set({
+      drawable: { shapes: [
+        this.arrow(this.analysis.move,'red')
+      ]},
       movable: {
         events: {
           after: (orig, dest) => {
@@ -45,23 +44,20 @@ export class Puzzle {
                 dests: toDests(chess)
               },
               drawable: { shapes: [
-                { orig: this.movePlayed.from, dest: this.movePlayed.to, brush: 'red' },
-                { orig: this.bestMove.from, dest: this.bestMove.to, brush: 'green' }
+                { orig: orig, dest: dest, brush: 'yellow' },
+                this.arrow(this.analysis.move,'red'),
+                this.arrow(this.analysis.best,'green')
               ]}
             });
           }
         }
       },
-      drawable: { shapes: [
-        { orig: this.movePlayed.from, dest: this.movePlayed.to, brush: 'red' }
-      ]},
       events: {
-        select: (orig) => {
+        select: ({}) => {
           cg.set({
             drawable: { shapes: [
-        { orig: this.movePlayed.from, dest: this.movePlayed.to, brush: 'red' },
-        { orig: orig, brush: 'blue' }
-      ]}
+              this.arrow(this.analysis.move,'red')
+            ]}
           })
         }
       }
@@ -76,4 +72,7 @@ export class Puzzle {
     this.run(el)
   }
 
+  arrow(move, colour) {
+    return { orig: move.from, dest: move.to, brush: colour }
+  }
 }
