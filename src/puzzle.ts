@@ -34,8 +34,8 @@ export class Puzzle {
     const cg = Chessground(el, config);
 
     cg.set({
-      movable: { 
-        events: { 
+      movable: {
+        events: {
           after: (orig, dest) => {
             chess.move({from: orig, to: dest});
             cg.set({

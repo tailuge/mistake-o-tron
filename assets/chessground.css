@@ -48,17 +48,17 @@
 .cg-board .cg-square.premove-dest.drag-over {
   box-shadow: inset 0 0 10px 2px rgba(216, 85, 0, 0.9);
 }
-.cg-board square.last-move {
+.cg-board .last-move {
   will-change: transform;
   background-color: rgba(155, 199, 0, 0.41);
 }
-.cg-board square.selected {
+.cg-board .selected {
   background-color: rgba(20, 85, 30, 0.5);
 }
-.cg-board square.check {
+.cg-board .check {
   background: radial-gradient(ellipse at center, rgba(255, 0, 0, 1) 0%, rgba(231, 0, 0, 1) 25%, rgba(169, 0, 0, 0) 89%, rgba(158, 0, 0, 0) 100%);
 }
-.cg-board square.current-premove {
+.cg-board .current-premove {
   background-color: rgba(20, 30, 85, 0.5);
 }
 .cg-board-wrap piece {
@@ -72,28 +72,28 @@
   will-change: transform;
   pointer-events: none;
 }
-.cg-board piece.dragging {
+.cg-board .dragging {
   cursor: move;
   z-index: 9;
 }
-.cg-board piece.anim {
+.cg-board .anim {
   z-index: 8;
 }
-.cg-board piece.fading {
+.cg-board .fading {
   z-index: 1;
   opacity: 0.5;
 }
 .cg-board-wrap square.move-dest:hover {
   background-color: rgba(20, 85, 30, 0.3);
 }
-.cg-board-wrap piece.ghost {
+.cg-board-wrap .ghost {
   opacity: 0.3;
 }
 .cg-board-wrap svg {
   overflow: hidden;
   position: relative;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
