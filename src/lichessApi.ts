@@ -2,7 +2,7 @@ import * as oboe from 'oboe';
 
 export class LichessApi {
 
-  private url: string
+  private readonly url: string
   
   constructor(url) {
     this.url = url

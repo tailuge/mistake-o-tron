@@ -22,19 +22,20 @@
 
     <div class="inputs">
         <p><label>Analysis Filter</label></p><br/> Severity
-        <select>
+        <select id="severity">
      <option value="Inaccuracy">Inaccuracy</option>
-     <option value="Mistake" selected="selected">Mistake</option>
-     <option value="Blunder">Blunder</option>
+     <option value="Mistake">Mistake</option>
+     <option value="Blunder" selected="selected">Blunder</option>
+     <option value="">Any</option>
     </select> Game Phase
-        <select>
+        <select id="phase">
      <option value="Opening" selected="selected">Opening</option>
      <option value="Middlegame">Middlegame</option>
      <option value="Endgame">Endgame</option>
     </select> Colour
-        <select>
-     <option value="White">White</option>
-     <option value="Black">Black</option>
+        <select id="colour">
+     <option value="white">White</option>
+     <option value="black">Black</option>
      <option value="" selected="selected">Any</option>
     </select> Time control:
         <select id="timecontrol">
@@ -47,6 +48,7 @@
   	 <option value="unlimited">Unlimited</option>
   	 <option value="correspondence">Correspondence</option>
 		</select>
+        <input type="submit" id="Recompute" value="Recompute" onclick="recompute()">
 
     </div>
 
@@ -65,7 +67,6 @@
         }
 
         var boards = new bundle.Boards(document.getElementById('chessground-examples'));
-        boards.redraw();
 
         var api = new bundle.LichessApi("https://lichess.org");
         var all = [];
@@ -77,11 +78,21 @@
                 all.push(x);
                 status("Fetching : " + all.length + " of " + total);
                 puzzles = puzzles.concat((new bundle.Analysis(x)).puzzles(player));
-                boards.setPuzzles(puzzles);
+                boards.setPuzzles(filter(puzzles));
             },
             x => {
                 status("Done");
             });
+
+        function filter(puzzles) {
+            return puzzles
+                .filter(bundle.colour(document.getElementById('colour').value))
+                .filter(bundle.severity(document.getElementById('severity').value));
+        }
+
+        function recompute() {
+            boards.setPuzzles(filter(puzzles));
+        }
     </script>
 </body>
 

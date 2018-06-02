@@ -3,15 +3,27 @@ import { Chessground }  from 'chessground';
 import { Color }  from 'chessground/types';
 import { toDests, toColor } from './util'
 import { VNode } from 'snabbdom/vnode';
+import { h } from 'snabbdom';
 
 export class Puzzle {
 
-  private analysis
+  private readonly analysis
 
   constructor(analysis) {
     this.analysis = analysis
   }
 
+  render() {
+    return h('section.blue.merida', [
+              h('div.cg-board-wrap', {
+                hook: {
+                  insert: this.runUnit,
+                  postpatch: this.runUnit}
+              }),
+              h('p', this.analysis.judgment.name)
+    ])
+  }
+  
   run(el) {
     const chess = new Chess(this.analysis.fen)
 
@@ -74,5 +86,9 @@ export class Puzzle {
 
   arrow(move, colour) {
     return { orig: move.from, dest: move.to, brush: colour }
+  }
+  
+  getAnalysis() {
+    return this.analysis
   }
 }

@@ -10,8 +10,8 @@ export class Boards {
   patch = init([klass, attributes, listeners]);
 
   vnode: VNode
+  private readonly element: Element
   puzzles: Puzzle[] = []
-  element: Element
 
   constructor(element: Element) {
     this.element = element
@@ -27,18 +27,7 @@ export class Boards {
   }
 
   render(puzzles: Puzzle[]) {
-    let elts = puzzles.map( p => {
-      return h('section.blue.merida', [
-        h('div.cg-board-wrap', {
-          hook: {
-            insert: p.runUnit,
-            postpatch: p.runUnit
-          }
-        }),
-        h('p', "Puzzle")
-      ])
-    })
-    return h('div#chessground-examples', elts);
+    return h('div#chessground-examples', puzzles.map(p => p.render()));
   }
   
 }

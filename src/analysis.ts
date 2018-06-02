@@ -3,7 +3,7 @@ import { Puzzle } from './puzzle';
 
 export class Analysis {
 
-  private gameAnalysis
+  private readonly gameAnalysis
 
   constructor(gameAnalysis) {
     this.gameAnalysis = gameAnalysis;

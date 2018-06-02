@@ -11,7 +11,6 @@ export function toDests(chess: any) {
 
 export function toColor(chess: any) {
   return (chess.turn() === 'w') ? 'white' : 'black';
-
 }
 
 export function playOtherSide(cg: Api, chess) {

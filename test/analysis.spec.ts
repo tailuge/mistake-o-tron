@@ -16,8 +16,8 @@ const games = [{"id":"92zyN44u","rated":false,"variant":"standard","speed":"blit
 const player = "tailuge"
 
 describe("Analysis", () => {
-        it("Should process example data without exception", (done) => {
-            games.forEach(x => {(new Analysis(x)).puzzles(player)})
-            done();
-        });
+  it("Should process example data without exception", (done) => {
+    games.forEach(x => {(new Analysis(x)).puzzles(player)})
+    done();
+  });
 });
