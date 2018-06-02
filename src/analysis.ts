@@ -25,9 +25,10 @@ export class Analysis {
       }
     })
     var playerColour: string = (this.gameAnalysis.players.white.user.id == player) ? 'w':'b'
-    this.gameAnalysis.analysis = this.gameAnalysis.analysis.filter( x => x.judgment ).filter( x => x.move.color == playerColour)
-
-    return this.gameAnalysis.analysis.map(x => this.toPuzzle(x))
+    return this.gameAnalysis.analysis = this.gameAnalysis.analysis
+      .filter( x => x.judgment )
+      .filter( x => x.move.color == playerColour)
+      .map(x => this.toPuzzle(x))
   }
 
   toPuzzle(analysis) {
