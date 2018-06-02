@@ -17,7 +17,7 @@ export class Analysis {
      chess.move(x)
     })
     let moves = chess.history({verbose: true})
-    moves.forEach((move,i) => { 
+    moves.forEach((move,i) => {
       if ((this.gameAnalysis.analysis[i]) && (this.gameAnalysis.analysis[i].judgment)) {
        const best = this.gameAnalysis.analysis[i].best;
        this.gameAnalysis.analysis[i].move = move
