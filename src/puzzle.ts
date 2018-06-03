@@ -20,11 +20,11 @@ export class Puzzle {
                   insert: this.runUnit,
                   postpatch: this.runUnit}
               }),
-              h('p',h('a', 
+              h('p',h('a',
                 {props: {
                   href: this.url(this.analysis),
                   target: "_blank"
-                }}, 
+                }},
                 this.analysis.judgment.name))
     ])
   }
