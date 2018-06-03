@@ -14,14 +14,7 @@
     <div class="inputs">
         Game history from <a href="https://lichess.org/api">lichess</a>. Player:
         <input type="text" id="player" name="player" value="tailuge" onkeydown="pressEnter(event)" /> Analysed games to fetch:
-        <input type="text" name="games" id="games" value="8" onkeydown="pressEnter(event)" />
-        <input type="submit" id="Search" value="Fetch data" onclick="search()">
-    </div>
-
-
-    <div class="inputs">
-        Severity
-        <select id="severity" onchange="recompute()">
+        <input type="text" name="games" id="games" value="8" onkeydown="pressEnter(event)" /> Severity <select id="severity" onchange="recompute()">
     <option value="" selected="selected">Any</option>
      <option value="Inaccuracy">Inaccuracy</option>
      <option value="Mistake">Mistake</option>
@@ -48,6 +41,7 @@
   	 <option value="unlimited">Unlimited</option>
   	 <option value="correspondence">Correspondence</option>
 		</select>
+        <input type="submit" id="Search" value="Fetch data" onclick="search()">
 
     </div>
 

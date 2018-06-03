@@ -65,6 +65,10 @@ describe("Filter phase", () => {
     expect(phase('')(new Puzzle({halfMove: 10}))).to.be.true
     expect(phase('')(new Puzzle({halfMove: 28}))).to.be.true
   });
+  it("recognises middlegame", () => {
+    expect(phase('Middlegame')(new Puzzle({fen:"rn1qkb1r/pp3ppB/2p1pn1p/7P/3P4/5NN1/PPP2PP1/R1BQK2R b KQkq - 0 28", halfMove: 28}))).to.be.true
+    expect(phase('Middlegame')(new Puzzle({fen:"rn1qkb1r/pp3ppB/2p1pn1p/7P/3P4/5NN1/PPP2PP1/R1BQK2R b KQkq - 0 10", halfMove: 10}))).to.be.false
+  });
 });
 
 describe("Filter timecontrol", () => {

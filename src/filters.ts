@@ -19,7 +19,7 @@ export function severity(x:string) {
 
 export function phase(x:string) {
   return (p: Puzzle) => {
-    if (x === 'Any') return true
+    if (x === '') return true
     if (x == 'Opening') {
       return p.getAnalysis().halfMove < 20
     }
@@ -28,7 +28,7 @@ export function phase(x:string) {
       const pieces = fen.replace(/ .*$/,'').replace(/[0-9 pP-]/g,'')
       return pieces.length <= 7 + 6
     }
-    return true
+    return !phase('Opening')(p) && !(phase('Endgame')(p))
   }
 }
 
