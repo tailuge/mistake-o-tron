@@ -20,8 +20,16 @@ export class Puzzle {
                   insert: this.runUnit,
                   postpatch: this.runUnit}
               }),
-              h('p', this.analysis.judgment.name)
+              h('p',h('a', 
+                {props: {href: this.url(this.analysis)}}, 
+                this.analysis.judgment.name))
     ])
+  }
+  
+  url(analysis) {
+    const chess = new Chess(analysis.fen)
+    let color:Color = toColor(chess)
+    return 'https://lichess.org/' + analysis.id + '/' + color + '#' + analysis.halfMove
   }
   
   run(el) {

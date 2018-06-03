@@ -1,7 +1,8 @@
 import 'mocha';
 import { expect } from 'chai';
 import { Analysis } from '../src/analysis';
-import { colour, severity } from '../src/filters';
+import { Puzzle } from '../src/puzzle';
+import { colour, severity, phase, timecontrol } from '../src/filters';
 
 const games = [
   {"id":"kiq0tzlD","rated":false,"variant":"standard","speed":"blitz","perf":"blitz","createdAt":1527777666834,"lastMoveAt":1527778119646,"status":"resign",
@@ -47,5 +48,32 @@ describe("Filter severity", () => {
   });
   it("Should keep all puzzles", () => {
     expect(blackPuzzles.filter(severity('')).length).to.equal(17)
+  });
+});
+
+describe("Filter phase", () => {
+  it("recognises endgame", () => {
+    expect(phase('Endgame')(new Puzzle({fen:"2r3k1/4pp2/p2p2pp/8/2P1P3/2bn1PN1/P5PP/7K w - - 0 28", halfMove: 28}))).to.be.true
+    expect(phase('Endgame')(new Puzzle({fen:"rn1qkb1r/pp3ppB/2p1pn1p/7P/3P4/5NN1/PPP2PP1/R1BQK2R b KQkq - 0 10", halfMove: 28}))).to.be.false
+  });
+  it("recognises opening", () => {
+    expect(phase('Opening')(new Puzzle({halfMove: 10}))).to.be.true
+    expect(phase('Opening')(new Puzzle({halfMove: 28}))).to.be.false
+  });
+  it("recognises any", () => {
+    expect(phase('')(new Puzzle({fen:"2r3k1/4pp2/p2p2pp/8/2P1P3/2bn1PN1/P5PP/7K w - - 0 28", halfMove: 28}))).to.be.true
+    expect(phase('')(new Puzzle({halfMove: 10}))).to.be.true
+    expect(phase('')(new Puzzle({halfMove: 28}))).to.be.true
+  });
+});
+
+describe("Filter timecontrol", () => {
+  it("blitz", () => {
+    expect(timecontrol('blitz')(new Puzzle({speed: "blitz"}))).to.be.true
+    expect(timecontrol('blitz')(new Puzzle({speed: "rapid"}))).to.be.false
+  });
+  it("any", () => {
+    expect(timecontrol('')(new Puzzle({speed: "blitz"}))).to.be.true
+    expect(timecontrol('')(new Puzzle({speed: "rapid"}))).to.be.true
   });
 });

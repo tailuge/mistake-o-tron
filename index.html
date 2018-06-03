@@ -14,7 +14,7 @@
         <br/> Player:
         <input type="text" id="player" name="player" value="tailuge" onkeydown="pressEnter(event)" />
         <br/> Number of analysed games to fetch:
-        <input type="text" name="pages" id="pages" value="10" onkeydown="pressEnter(event)" />
+        <input type="text" name="games" id="games" value="8" onkeydown="pressEnter(event)" />
         <br/>
         <input type="submit" id="Search" value="Fetch data" onclick="search()">
     </div>
@@ -23,20 +23,21 @@
     <div class="inputs">
         <p><label>Analysis Filter</label></p><br/> Severity
         <select id="severity">
+     <option value="" selected="selected">Any</option>
      <option value="Inaccuracy">Inaccuracy</option>
      <option value="Mistake">Mistake</option>
-     <option value="Blunder" selected="selected">Blunder</option>
-     <option value="">Any</option>
+     <option value="Blunder">Blunder</option>
     </select> Game Phase
         <select id="phase">
-     <option value="Opening" selected="selected">Opening</option>
+     <option value="" selected="selected">Any</option>
+     <option value="Opening">Opening</option>
      <option value="Middlegame">Middlegame</option>
      <option value="Endgame">Endgame</option>
     </select> Colour
         <select id="colour">
+     <option value="" selected="selected">Any</option>
      <option value="white">White</option>
      <option value="black">Black</option>
-     <option value="" selected="selected">Any</option>
     </select> Time control:
         <select id="timecontrol">
   	 <option value="" selected="selected">Any</option>
@@ -53,10 +54,8 @@
     </div>
 
     <div class="inputs">
-        <p><label>Status</label></p>
         <pre id="log"></pre>
     </div>
-
     <div id="chessground-examples"></div>
     <script src="dist/main.js"></script>
     <script>
@@ -67,31 +66,44 @@
         }
 
         var boards = new bundle.Boards(document.getElementById('chessground-examples'));
-
-        var api = new bundle.LichessApi("https://lichess.org");
-        var all = [];
         var puzzles = [];
-        var total = 2;
-        var player = "tailuge";
-        api.games(player, total,
-            x => {
-                all.push(x);
-                status("Fetching : " + all.length + " of " + total);
-                puzzles = puzzles.concat((new bundle.Analysis(x)).puzzles(player));
-                boards.setPuzzles(filter(puzzles));
-            },
-            x => {
-                status("Done");
-            });
+
+        function search() {
+            var api = new bundle.LichessApi("https://lichess.org");
+            var all = [];
+            puzzles = [];
+            var total = document.getElementById('games').value;
+            var player = document.getElementById('player').value;
+            status("Fetching data...");
+            boards.setPuzzles([]);
+            api.games(player, total,
+                x => {
+                    all.push(x);
+                    status("Fetching : " + all.length + " of " + total);
+                    puzzles = puzzles.concat((new bundle.Analysis(x)).puzzles(player));
+                    boards.setPuzzles(filter(puzzles));
+                },
+                x => {
+                    status("Done");
+                });
+        }
 
         function filter(puzzles) {
             return puzzles
+                .filter(bundle.severity(document.getElementById('severity').value))
+                .filter(bundle.timecontrol(document.getElementById('timecontrol').value))
                 .filter(bundle.colour(document.getElementById('colour').value))
-                .filter(bundle.severity(document.getElementById('severity').value));
+                .filter(bundle.phase(document.getElementById('phase').value));
         }
 
         function recompute() {
             boards.setPuzzles(filter(puzzles));
+        }
+
+        function pressEnter(event) {
+            if (event.keyCode == 13) {
+                document.getElementById('Search').click();
+            }
         }
     </script>
 </body>

@@ -24,6 +24,8 @@ export class Analysis {
        this.gameAnalysis.analysis[i].halfMove = i+1
        this.gameAnalysis.analysis[i].fen = fens[i]
        this.gameAnalysis.analysis[i].best = {from:best.substring(0, 2), to:best.substring(2, 4)}
+       this.gameAnalysis.analysis[i].speed = this.gameAnalysis.speed
+       this.gameAnalysis.analysis[i].id = this.gameAnalysis.id
       }
     })
     var playerColour: string = (this.gameAnalysis.players.white.user.id == player) ? 'w':'b'
