@@ -4,17 +4,22 @@ body {
   background-image: linear-gradient(to bottom, #2c2c2c, #1a1a1a 116px);
   color: #b0b0b0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 a {
-  color: #cccccc;
+  color: #bbbbdd;
   text-decoration: none;
 }
 
-select, input {
+h2 {
+  text-align: center;
+}
+
+select,
+input {
   width: 90px;
-  margin: 10px;
+  margin: 4px;
   background-color: black;
   color: #cccccc;
 }
@@ -43,10 +48,9 @@ select, input {
   margin-left: 20px;
 }
 
-
 .inputs {
   background-color: #222;
   border-radius: 3px;
-  padding: 5px;
+  padding: 2px;
   margin: 2px 2px;
 }

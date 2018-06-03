@@ -39,13 +39,7 @@ watchedBrowserify.on("update", bundle);
 watchedBrowserify.on("log", gutil.log);
 
 gulp.task('dev', function() {
-  return build(true)
-    .bundle()
-    .on('error', onError)
-    .pipe(source('main.js'))
-    .pipe(buffer())
-    .pipe(uglify())
-    .pipe(gulp.dest(destination));
+  return bundle();
 });
 
 gulp.task('run-tests', function() {

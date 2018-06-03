@@ -10,10 +10,9 @@
 </head>
 
 <body>
-    <h2>Mistake-o-tron</h2>
+    <h2><a href="https://github.com/tailuge/test-o-tron">Mistake-o-tron</a></h2>
     <div class="inputs">
-        <p><label>Game History</label></p>Game history is fetched at 10 games per second from <a href="https://lichess.org/api">lichess</a>. The more you ask for the longer it takes.
-        <br/> Player:
+        Game history from <a href="https://lichess.org/api">lichess</a>. Player:
         <input type="text" id="player" name="player" value="tailuge" onkeydown="pressEnter(event)" /> Analysed games to fetch:
         <input type="text" name="games" id="games" value="8" onkeydown="pressEnter(event)" />
         <input type="submit" id="Search" value="Fetch data" onclick="search()">
@@ -60,16 +59,13 @@
     <script>
         /* global bundle */
 
-        function status(x) {
-            document.getElementById("log").innerHTML = x;
-        }
-
+        var api = new bundle.LichessApi("https://lichess.org");
         var boards = new bundle.Boards(document.getElementById('chessground-examples'));
         var puzzles = [];
+        var all = [];
 
         function search() {
-            var api = new bundle.LichessApi("https://lichess.org");
-            var all = [];
+            all = [];
             puzzles = [];
             var total = document.getElementById('games').value;
             var player = document.getElementById('player').value;
@@ -80,19 +76,20 @@
                     all.push(x);
                     status("Fetching : " + all.length + " of " + total);
                     puzzles = puzzles.concat((new bundle.Analysis(x)).puzzles(player));
-                    boards.setPuzzles(filter(puzzles));
+                    recompute();
                 },
-                x => {
-                    status("Done");
-                });
+                () => {});
         }
 
         function filter(puzzles) {
-            return puzzles
+            const filtered = puzzles
                 .filter(bundle.severity(document.getElementById('severity').value))
                 .filter(bundle.timecontrol(document.getElementById('timecontrol').value))
                 .filter(bundle.colour(document.getElementById('colour').value))
                 .filter(bundle.phase(document.getElementById('phase').value));
+            status("From " + all.length + " analysed games found " + puzzles.length + " suboptimal moves, filtered to " + filtered.length);
+            filtered.sort((a, b) => a.getAnalysis().halfMove - b.getAnalysis().halfMove);
+            return filtered;
         }
 
         function recompute() {
@@ -100,9 +97,11 @@
         }
 
         function pressEnter(event) {
-            if (event.keyCode == 13) {
-                document.getElementById('Search').click();
-            }
+            (event.keyCode == 13) && document.getElementById('Search').click();
+        }
+
+        function status(x) {
+            document.getElementById("log").innerHTML = x;
         }
     </script>
 </body>

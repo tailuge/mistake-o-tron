@@ -21,7 +21,7 @@ export function phase(x:string) {
   return (p: Puzzle) => {
     if (x === 'Any') return true
     if (x == 'Opening') {
-      return p.getAnalysis().halfMove < 16
+      return p.getAnalysis().halfMove < 20
     }
     if (x === 'Endgame') {
       const fen = p.getAnalysis().fen
