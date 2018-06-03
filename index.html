@@ -2,9 +2,10 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="assets/chessground.css">
-    <link rel="stylesheet" href="assets/theme.css">
+    <link rel="stylesheet" href="assets/chessground.css" async>
+    <link rel="stylesheet" href="assets/theme.css" async>
     <link rel="stylesheet" href="assets/examples.css">
+    <title>Mistake-o-tron</title>
 </head>
 
 <body>
@@ -12,33 +13,32 @@
     <div class="inputs">
         <p><label>Game History</label></p>Game history is fetched at 10 games per second from <a href="https://lichess.org/api">lichess</a>. The more you ask for the longer it takes.
         <br/> Player:
-        <input type="text" id="player" name="player" value="tailuge" onkeydown="pressEnter(event)" />
-         Analysed games to fetch:
+        <input type="text" id="player" name="player" value="tailuge" onkeydown="pressEnter(event)" /> Analysed games to fetch:
         <input type="text" name="games" id="games" value="8" onkeydown="pressEnter(event)" />
         <input type="submit" id="Search" value="Fetch data" onclick="search()">
     </div>
 
 
     <div class="inputs">
-        <p><label>Analysis Filter</label></p> Severity
-        <select id="severity">
-     <option value="" selected="selected">Any</option>
+        Severity
+        <select id="severity" onchange="recompute()">
+    <option value="" selected="selected">Any</option>
      <option value="Inaccuracy">Inaccuracy</option>
      <option value="Mistake">Mistake</option>
      <option value="Blunder">Blunder</option>
     </select> Game Phase
-        <select id="phase">
+        <select id="phase" onchange="recompute()">
      <option value="" selected="selected">Any</option>
      <option value="Opening">Opening</option>
      <option value="Middlegame">Middlegame</option>
      <option value="Endgame">Endgame</option>
     </select> Colour
-        <select id="colour">
+        <select id="colour" onchange="recompute()">
      <option value="" selected="selected">Any</option>
      <option value="white">White</option>
      <option value="black">Black</option>
     </select> Time control:
-        <select id="timecontrol">
+        <select id="timecontrol" onchange="recompute()">
   	 <option value="" selected="selected">Any</option>
   	 <option value="classical">Classical</option>
   	 <option value="rapid">Rapid</option>
@@ -48,7 +48,6 @@
   	 <option value="unlimited">Unlimited</option>
   	 <option value="correspondence">Correspondence</option>
 		</select>
-        <input type="submit" id="Recompute" value="Recompute" onclick="recompute()">
 
     </div>
 
@@ -56,7 +55,7 @@
         <pre id="log"></pre>
     </div>
     <div id="chessground-examples"></div>
-    <script src="dist/main.js"></script>
+    <script src="dist/main.js" async></script>
     <script>
         /* global bundle */
 
