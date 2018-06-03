@@ -8,20 +8,19 @@
 </head>
 
 <body>
-    <h2>test-o-tron</h2>
+    <h2>Mistake-o-tron</h2>
     <div class="inputs">
-        <p><label>Game History</label></p><br/>Game history is fetched at 10 games per second from <a href="https://lichess.org/api">lichess</a>. The more you ask for the longer it takes.
+        <p><label>Game History</label></p>Game history is fetched at 10 games per second from <a href="https://lichess.org/api">lichess</a>. The more you ask for the longer it takes.
         <br/> Player:
         <input type="text" id="player" name="player" value="tailuge" onkeydown="pressEnter(event)" />
-        <br/> Number of analysed games to fetch:
+         Analysed games to fetch:
         <input type="text" name="games" id="games" value="8" onkeydown="pressEnter(event)" />
-        <br/>
         <input type="submit" id="Search" value="Fetch data" onclick="search()">
     </div>
 
 
     <div class="inputs">
-        <p><label>Analysis Filter</label></p><br/> Severity
+        <p><label>Analysis Filter</label></p> Severity
         <select id="severity">
      <option value="" selected="selected">Any</option>
      <option value="Inaccuracy">Inaccuracy</option>

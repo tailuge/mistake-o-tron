@@ -12,8 +12,8 @@ a {
   text-decoration: none;
 }
 
-select input {
-  width: 50px;
+select, input {
+  width: 90px;
   margin: 10px;
   background-color: black;
   color: #cccccc;
