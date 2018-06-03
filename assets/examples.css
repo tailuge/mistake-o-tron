@@ -7,6 +7,18 @@ body {
   font-size: 11px;
 }
 
+a {
+  color: #cccccc;
+  text-decoration: none;
+}
+
+select input {
+  width: 50px;
+  margin: 10px;
+  background-color: black;
+  color: #cccccc;
+}
+
 #chessground-examples {
   margin: 30px 0 0 0;
   display: flex;
