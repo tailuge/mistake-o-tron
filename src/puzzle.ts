@@ -21,7 +21,10 @@ export class Puzzle {
                   postpatch: this.runUnit}
               }),
               h('p',h('a', 
-                {props: {href: this.url(this.analysis)}}, 
+                {props: {
+                  href: this.url(this.analysis),
+                  target: "_blank"
+                }}, 
                 this.analysis.judgment.name))
     ])
   }
@@ -29,7 +32,7 @@ export class Puzzle {
   url(analysis) {
     const chess = new Chess(analysis.fen)
     let color:Color = toColor(chess)
-    return 'https://lichess.org/' + analysis.id + '/' + color + '#' + analysis.halfMove
+    return 'https://lichess.org/' + analysis.id + '/' + color + '#' + (analysis.halfMove - 1)
   }
   
   run(el) {
