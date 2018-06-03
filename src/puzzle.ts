@@ -7,12 +7,30 @@ import { h } from 'snabbdom';
 
 export class Puzzle {
 
-  private readonly analysis
-
+  readonly analysis
+  private readonly chess
+  private readonly config
+  
   constructor(analysis) {
     this.analysis = analysis
+    this.chess = new Chess(this.analysis.fen)
+    this.config = this.initialiseConfig()
   }
-
+  
+  initialiseConfig() {
+    let color:Color = toColor(this.chess)
+    return {
+      orientation: color,
+      turnColor: color,
+      fen: this.analysis.fen,
+      movable: {
+        color: color,
+        free: false,
+        dests: toDests(this.chess)
+      }
+    }
+  }
+  
   render() {
     return h('section.blue.merida', [
               h('div.cg-board-wrap', {
@@ -36,21 +54,8 @@ export class Puzzle {
   }
   
   run(el) {
-    const chess = new Chess(this.analysis.fen)
-
-    let color:Color = toColor(chess)
-    let config = {
-      orientation: color,
-      turnColor: color,
-      fen: this.analysis.fen,
-      movable: {
-        color: color,
-        free: false,
-        dests: toDests(chess)
-      }
-    }
-
-    const cg = Chessground(el, config);
+    
+    const cg = Chessground(el, this.config);
 
     cg.set({
       drawable: { shapes: [
@@ -59,12 +64,12 @@ export class Puzzle {
       movable: {
         events: {
           after: (orig, dest) => {
-            chess.move({from: orig, to: dest});
+            this.chess.move({from: orig, to: dest});
             cg.set({
-              turnColor: toColor(chess),
+              turnColor: toColor(this.chess),
               movable: {
-                color: toColor(chess),
-                dests: toDests(chess)
+                color: toColor(this.chess),
+                dests: toDests(this.chess)
               },
               drawable: { shapes: [
                 { orig: orig, dest: dest, brush: 'yellow' },
@@ -97,9 +102,5 @@ export class Puzzle {
 
   arrow(move, colour) {
     return { orig: move.from, dest: move.to, brush: colour }
-  }
-  
-  getAnalysis() {
-    return this.analysis
   }
 }

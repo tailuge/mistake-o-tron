@@ -4,7 +4,7 @@ import { toColor } from './util'
 
 export function colour(x:string) {
   return (p: Puzzle) => {
-    const chess = new Chess(p.getAnalysis().fen)
+    const chess = new Chess(p.analysis.fen)
     if (x === '') return true
     return toColor(chess) === x
   }
@@ -13,7 +13,7 @@ export function colour(x:string) {
 export function severity(x:string) {
   return (p: Puzzle) => {
     if (x === '') return true
-    return p.getAnalysis().judgment.name === x
+    return p.analysis.judgment.name === x
   }
 }
 
@@ -21,10 +21,10 @@ export function phase(x:string) {
   return (p: Puzzle) => {
     if (x === '') return true
     if (x == 'Opening') {
-      return p.getAnalysis().halfMove < 20
+      return p.analysis.halfMove < 20
     }
     if (x === 'Endgame') {
-      const fen = p.getAnalysis().fen
+      const fen = p.analysis.fen
       const pieces = fen.replace(/ .*$/,'').replace(/[0-9 pP-]/g,'')
       return pieces.length <= 7 + 6
     }
@@ -35,6 +35,6 @@ export function phase(x:string) {
 export function timecontrol(x:string) {
   return (p: Puzzle) => {
     if (x === '') return true
-    return p.getAnalysis().speed === x
+    return p.analysis.speed === x
   }
 }
