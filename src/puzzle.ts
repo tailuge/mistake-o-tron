@@ -1,23 +1,23 @@
-import { Chess } from "chess.js";
-import { Chessground } from "chessground";
-import { Color } from "chessground/types";
-import { toDests, toColor } from "./util";
-import { VNode } from "snabbdom/vnode";
-import { h } from "snabbdom";
+import { Chess } from "chess.js"
+import { Chessground } from "chessground"
+import { Color } from "chessground/types"
+import { toDests, toColor } from "./util"
+import { VNode } from "snabbdom/vnode"
+import { h } from "snabbdom"
 
 export class Puzzle {
-  readonly analysis;
-  private readonly chess;
-  private readonly config;
+  readonly analysis
+  private readonly chess
+  private readonly config
 
   constructor(analysis) {
-    this.analysis = analysis;
-    this.chess = new Chess(this.analysis.fen);
-    this.config = this.initialiseConfig();
+    this.analysis = analysis
+    this.chess = new Chess(this.analysis.fen)
+    this.config = this.initialiseConfig()
   }
 
   initialiseConfig() {
-    let color: Color = toColor(this.chess);
+    let color: Color = toColor(this.chess)
     return {
       orientation: color,
       turnColor: color,
@@ -27,7 +27,7 @@ export class Puzzle {
         free: false,
         dests: toDests(this.chess)
       }
-    };
+    }
   }
 
   render() {
@@ -51,41 +51,34 @@ export class Puzzle {
           this.analysis.judgment.name
         )
       )
-    ]);
+    ])
   }
 
   url(analysis) {
-    const chess = new Chess(analysis.fen);
-    let color: Color = toColor(chess);
-    return (
-      "https://lichess.org/" +
-      analysis.id +
-      "/" +
-      color +
-      "#" +
-      (analysis.halfMove - 1)
-    );
+    const chess = new Chess(analysis.fen)
+    let color: Color = toColor(chess)
+    return `https://lichess.org/${analysis.id}/${color}#${analysis.halfMove - 1}`
   }
 
   run(el) {
-    const cg = Chessground(el, this.config);
-    this.originalMove(cg);
+    const cg = Chessground(el, this.config)
+    this.originalMove(cg)
     cg.set({
       movable: {
         events: {
           after: (orig, dest) => {
-            this.moveAndResult(cg, orig, dest);
+            this.moveAndResult(cg, orig, dest)
           }
         }
       },
       events: {
         select: ({}) => {
-          this.originalMove(cg);
+          this.originalMove(cg)
         }
       }
-    });
+    })
 
-    return cg;
+    return cg
   }
 
   originalMove(cg) {
@@ -93,11 +86,11 @@ export class Puzzle {
       drawable: {
         shapes: [this.arrow(this.analysis.move, "red")]
       }
-    });
+    })
   }
 
   moveAndResult(cg, orig, dest) {
-    this.chess.move({ from: orig, to: dest });
+    this.chess.move({ from: orig, to: dest })
     cg.set({
       turnColor: toColor(this.chess),
       movable: {
@@ -111,16 +104,16 @@ export class Puzzle {
           this.arrow(this.analysis.best, "green")
         ]
       }
-    });
+    })
   }
 
   runUnit = (vnode: VNode) => {
-    const el = vnode.elm as HTMLElement;
-    el.className = "cg-board-wrap";
-    this.run(el);
-  };
+    const el = vnode.elm as HTMLElement
+    el.className = "cg-board-wrap"
+    this.run(el)
+  }
 
   arrow(move, colour) {
-    return { orig: move.from, dest: move.to, brush: colour };
+    return { orig: move.from, dest: move.to, brush: colour }
   }
 }
