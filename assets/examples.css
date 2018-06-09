@@ -24,8 +24,13 @@ input {
   color: #cccccc;
 }
 
+#Search {
+  background-color: lightgrey;
+  color: black;
+}
+
 #chessground-examples {
-  margin: 30px 0 0 0;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -33,15 +38,23 @@ input {
 
 #chessground-examples section {
   display: inline-block;
-  background: #404040;
-  padding: 10px 12px 10px 12px;
+  background: #303030;
+  padding: 10px 10px 0px 10px;
   border-radius: 3px;
-  margin: 2px 2px;
+  margin: 1px 1px;
+}
+
+#chessground-examples .solved {
+  background: #050;
+}
+
+#chessground-examples .incorrect {
+  background: #600;
 }
 
 #chessground-examples section p {
   text-align: center;
-  margin: 20px 0 0 0;
+  margin: 16px 0 4px 0;
 }
 
 #chessground-examples control {

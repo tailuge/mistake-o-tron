@@ -12,7 +12,7 @@
 <body>
     <h2><a href="https://github.com/tailuge/test-o-tron">Mistake-o-tron</a></h2>
     <div class="inputs">
-        Game history from <a href="https://lichess.org/api">lichess</a>. Player:
+        <a href="https://lichess.org/api">Lichess</a> player:
         <input type="text" id="player" name="player" value="tailuge" onkeydown="pressEnter(event)" /> Analysed games to fetch:
         <input type="text" name="games" id="games" value="2" onkeydown="pressEnter(event)" /> Severity <select id="severity" onchange="recompute()">
     <option value="" selected="selected">Any</option>
@@ -42,12 +42,9 @@
   	 <option value="correspondence">Correspondence</option>
 		</select>
         <input type="submit" id="Search" value="Fetch data" onclick="search()">
-
     </div>
 
-    <div class="inputs">
-        <pre id="log"></pre>
-    </div>
+    <pre class="inputs" id="log"></pre>
     <div id="chessground-examples"></div>
     <script src="dist/main.js"></script>
     <script>

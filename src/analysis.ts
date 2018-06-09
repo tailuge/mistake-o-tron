@@ -28,7 +28,8 @@ export class Analysis {
        this.gameAnalysis.analysis[i].id = this.gameAnalysis.id
       }
     })
-    var playerColour: string = (this.gameAnalysis.players.white.user.id == player) ? 'w':'b'
+    var whiteUser = this.gameAnalysis.players.white.user
+    var playerColour: string = (whiteUser && (whiteUser.id == player)) ? 'w':'b'
     return this.gameAnalysis.analysis = this.gameAnalysis.analysis
       .filter(x => x.judgment)
       .filter(x => x.move.color == playerColour)

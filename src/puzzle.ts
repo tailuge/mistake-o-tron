@@ -9,11 +9,13 @@ export class Puzzle {
   readonly analysis
   private readonly chess
   private readonly config
-
+  private status
+  
   constructor(analysis) {
     this.analysis = analysis
     this.chess = new Chess(this.analysis.fen)
     this.config = this.initialiseConfig()
+    this.status = ''
   }
 
   initialiseConfig() {
@@ -30,8 +32,13 @@ export class Puzzle {
     }
   }
 
+  pathFromStatus(path) {
+    return (this.status == '') ? path : path + "." +this.status  
+  }
+  
   render() {
-    return h("section.blue.merida", [
+    
+    return h(this.pathFromStatus("section.blue.merida"), [
       h("div.cg-board-wrap", {
         hook: {
           insert: this.runUnit,
