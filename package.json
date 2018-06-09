@@ -1,7 +1,7 @@
 {
-  "name": "test-o-tron",
+  "name": "mistake-o-tron",
   "version": "1.0.0",
-  "description": "use lichess analysis from past games",
+  "description": "reuse lichess analysis from past games",
   "main": "dist/main.js",
   "author": "tailuge",
   "license": "GPL-3.0",
