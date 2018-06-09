@@ -33,7 +33,7 @@ export class Puzzle {
   }
 
   pathFromStatus(path) {
-    return (this.status == '') ? path : path + "." +this.status  
+    return (this.status == '') ? path : path + "." +this.status
   }
   
   render() {
