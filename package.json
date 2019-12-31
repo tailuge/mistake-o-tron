@@ -13,6 +13,8 @@
   "dependencies": {
     "chess.js": "^0.10",
     "chessground": "~7.3",
+    "lodash": "^4.17.15",
+    "lodash.template": "^4.5.0",
     "oboe": "^2.1.5",
     "page": "^1.11.5",
     "snabbdom": "^0.7.4"
