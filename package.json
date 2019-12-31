@@ -15,6 +15,7 @@
     "chessground": "~7.3",
     "lodash": "^4.17.15",
     "lodash.template": "^4.5.0",
+    "mem": "^6.0.1",
     "oboe": "^2.1.5",
     "page": "^1.11.5",
     "snabbdom": "^0.7.4"
