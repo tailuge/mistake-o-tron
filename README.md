@@ -10,8 +10,7 @@ Based on [lichess' chessground](https://github.com/ornicar/chessground-examples)
 ### Setup
 
 ```
-nvm use v9.11.1
-npm install gulp-cli -g
+nvm use v10.16.3
 yarn install
 yarn watch 
 ```
