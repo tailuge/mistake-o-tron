@@ -4,7 +4,7 @@ const source = require('vinyl-source-stream');
 const tsify = require("tsify");
 const watchify = require("watchify");
 const gutil = require("gulp-util");
-const uglify = require("gulp-uglify");
+const terser = require("gulp-terser");
 const buffer = require('vinyl-buffer');
 const mocha = require('gulp-mocha');
 
@@ -30,11 +30,11 @@ function bundle() {
     .on('error', onError)
     .pipe(source('main.js'))
     .pipe(buffer())
-    .pipe(uglify())
+    .pipe(terser())
     .pipe(gulp.dest(destination));
 }
 
-gulp.task("default", [], bundle);
+gulp.task("default", gulp.series(bundle));
 watchedBrowserify.on("update", bundle);
 watchedBrowserify.on("log", gutil.log);
 
