@@ -14,7 +14,7 @@ export class LichessApi {
 												     "&analysed=true&evals=true&moves=true&opening=true"
 		oboe({
 			method: "GET",
-			url: this.url + "/games/export/" + user + "?max=" + items + fixedQueryParams,
+			url: this.url + "/api/games/user/" + user + "?max=" + items + fixedQueryParams,
 			headers: { Accept: "application/x-ndjson" },
 		}).node("!", function(data) {
 			all.push(data);
