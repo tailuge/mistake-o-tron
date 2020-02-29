@@ -24,6 +24,6 @@ yarn test
 
 [Mistake-o-tron](https://tailuge.github.io/mistake-o-tron/index.html)
 
-![Screenshot](https://tailuge.github.io/mistake-o-tron/assets/images/demo.png)
+[![Screenshot](https://tailuge.github.io/mistake-o-tron/assets/images/demo.png)](https://tailuge.github.io/mistake-o-tron/index.html)
 
 
