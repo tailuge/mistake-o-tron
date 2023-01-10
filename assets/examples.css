@@ -59,6 +59,11 @@ input {
 
 #chessground-examples control {
   margin-left: 20px;
+  display: block;
+}
+
+#log {
+  word-wrap: break-word;
 }
 
 .inputs {
@@ -66,4 +71,17 @@ input {
   border-radius: 3px;
   padding: 2px;
   margin: 2px 2px;
+  display: block;
+
+}
+.inputs::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.userInput {
+  float: left;
+  height:30px;
+  padding-right: 20px;
 }
