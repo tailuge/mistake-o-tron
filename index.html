@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="assets/chessground.css" async>
     <link rel="stylesheet" href="assets/theme.css" async>
@@ -12,39 +13,53 @@
 <body>
     <h2><a href="https://github.com/tailuge/mistake-o-tron">Mistake-o-tron</a></h2>
     <div class="inputs">
-        <a href="https://lichess.org/api">Lichess</a> player:
-        <input type="text" id="player" name="player" value="tailuge" onkeydown="pressEnter(event)" /> Analysed games to fetch:
-        <input type="text" name="games" id="games" value="2" onkeydown="pressEnter(event)" /> Severity <select id="severity" onchange="recompute()">
-    <option value="" selected="selected">Any</option>
-     <option value="Inaccuracy">Inaccuracy</option>
-     <option value="Mistake">Mistake</option>
-     <option value="Blunder">Blunder</option>
-    </select> Game Phase
-        <select id="phase" onchange="recompute()">
-     <option value="" selected="selected">Any</option>
-     <option value="Opening">Opening</option>
-     <option value="Middlegame">Middlegame</option>
-     <option value="Endgame">Endgame</option>
-    </select> Colour
-        <select id="colour" onchange="recompute()">
-     <option value="" selected="selected">Any</option>
-     <option value="white">White</option>
-     <option value="black">Black</option>
-    </select> Time control:
-        <select id="timecontrol" onchange="recompute()">
-  	 <option value="" selected="selected">Any</option>
-  	 <option value="classical">Classical</option>
-  	 <option value="rapid">Rapid</option>
-  	 <option value="blitz">Blitz</option>
-  	 <option value="bullet">Bullet</option>
-  	 <option value="ultraBullet">UltraBullet</option>
-  	 <option value="unlimited">Unlimited</option>
-  	 <option value="correspondence">Correspondence</option>
-		</select>
-        <input type="submit" id="Search" value="Fetch data" onclick="search()">
+        <div class="userInput">
+            <a href="https://lichess.org/api">Lichess</a> player:
+            <input type="text" id="player" name="player" value="tailuge" onkeydown="pressEnter(event)" />
+        </div>
+        <div class="userInput">Analysed games to fetch:
+            <input type="text" name="games" id="games" value="2" onkeydown="pressEnter(event)" />
+        </div>
+        <div class="userInput">Severity:
+            <select id="severity" onchange="recompute()">
+                <option value="" selected="selected">Any</option>
+                <option value="Inaccuracy">Inaccuracy</option>
+                <option value="Mistake">Mistake</option>
+                <option value="Blunder">Blunder</option>
+            </select>
+        </div>
+        <div class="userInput">Game Phase:
+            <select id="phase" onchange="recompute()">
+                <option value="" selected="selected">Any</option>
+                <option value="Opening">Opening</option>
+                <option value="Middlegame">Middlegame</option>
+                <option value="Endgame">Endgame</option>
+            </select>
+        </div>
+        <div class="userInput">Colour:
+            <select id="colour" onchange="recompute()">
+                <option value="" selected="selected">Any</option>
+                <option value="white">White</option>
+                <option value="black">Black</option>
+            </select>
+        </div>
+        <div class="userInput">Time control:
+            <select id="timecontrol" onchange="recompute()">
+                <option value="" selected="selected">Any</option>
+                <option value="classical">Classical</option>
+                <option value="rapid">Rapid</option>
+                <option value="blitz">Blitz</option>
+                <option value="bullet">Bullet</option>
+                <option value="ultraBullet">UltraBullet</option>
+                <option value="unlimited">Unlimited</option>
+                <option value="correspondence">Correspondence</option>
+            </select>
+        </div>
+        <div class="userInput">
+            <input type="submit" id="Search" value="Fetch data" onclick="search()">
+        </div>
     </div>
-
-    <pre class="inputs" id="log"></pre>
+    <div class="inputs" id="log"></div>
     <div id="chessground-examples"></div>
     <script src="dist/main.js"></script>
     <script>
@@ -69,7 +84,7 @@
                     puzzles = puzzles.concat((new bundle.Analysis(x)).puzzles(player));
                     recompute();
                 },
-                () => {});
+                () => { });
         }
 
         function filter(puzzles) {
