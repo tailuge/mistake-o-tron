@@ -42,7 +42,7 @@
     "typescript": "^4.9.5",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
-    "watchify": "^3.11.1"
+    "watchify": "^4.0.0"
   },
   "nyc": {
     "include": [
