@@ -74,7 +74,7 @@
             all = [];
             puzzles = [];
             var total = document.getElementById('games').value;
-            var player = document.getElementById('player').value;
+            var player = document.getElementById('player').value.toLowerCase();
             status("Fetching data...");
             boards.setPuzzles([]);
             api.games(player, total,
