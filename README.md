@@ -1,5 +1,5 @@
 
-# Mistake-o-tron [![Build Status](https://travis-ci.org/tailuge/mistake-o-tron.svg?branch=master)](https://travis-ci.org/tailuge/mistake-o-tron/) [![Coverage Status](https://coveralls.io/repos/github/tailuge/mistake-o-tron/badge.svg?branch=master)](https://coveralls.io/github/tailuge/mistake-o-tron?branch=master) [![Dependency Status](https://david-dm.org/tailuge/mistake-o-tron.svg)](https://david-dm.org/tailuge/mistake-o-tron) [![devDependency Status](https://david-dm.org/tailuge/mistake-o-tron/dev-status.svg)](https://david-dm.org/tailuge/mistake-o-tron#info=devDependencies) [![CodeFactor](https://www.codefactor.io/repository/github/tailuge/mistake-o-tron/badge)](https://www.codefactor.io/repository/github/tailuge/mistake-o-tron) [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/tailuge/mistake-o-tron) 
+# Mistake-o-tron [![Build Status](https://travis-ci.org/tailuge/mistake-o-tron.svg?branch=master)](https://travis-ci.org/tailuge/mistake-o-tron/) [![Coverage Status](https://coveralls.io/repos/github/tailuge/mistake-o-tron/badge.svg?branch=master)](https://coveralls.io/github/tailuge/mistake-o-tron?branch=master) [![CodeFactor](https://www.codefactor.io/repository/github/tailuge/mistake-o-tron/badge)](https://www.codefactor.io/repository/github/tailuge/mistake-o-tron) [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/tailuge/mistake-o-tron) 
 
 
 Reuse lichess stockfish analysis
@@ -7,7 +7,7 @@ Reuse lichess stockfish analysis
 Based on [lichess' chessground](https://github.com/ornicar/chessground-examples) and [lichess API](https://lichess.org/api)
 
 
-### Setup
+### Setup and build
 
 ```
 nvm use v10.16.3
@@ -27,3 +27,8 @@ yarn test
 [![Screenshot](https://tailuge.github.io/mistake-o-tron/assets/images/demo.png)](https://tailuge.github.io/mistake-o-tron/index.html)
 
 
+### Serve on gitpod
+
+```
+python -m http.server 8000
+```
